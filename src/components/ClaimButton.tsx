@@ -1,52 +1,17 @@
 "use client";
 
 import {
-  type Connector,
   useAccount,
   useConnect,
   useDisconnect,
 } from "@starknet-react/core";
 import { useState } from "react";
+import {
+  getControllerConnector,
+  waitForControllerReady,
+} from "@/lib/controllerConnector";
 import { STARTER_PACK_ID } from "@/lib/meetupNft";
 import styles from "./ClaimButton.module.css";
-
-const CONTROLLER_READY_TIMEOUT_MS = 10_000;
-const CONTROLLER_READY_POLL_MS = 100;
-
-type StarterPackConnector = Connector & {
-  id: string;
-  controller: {
-    openStarterPack: (
-      id: string | number,
-      options?: { onPurchaseComplete?: () => void },
-    ) => Promise<void>;
-  };
-  isReady: () => boolean;
-};
-
-function getControllerConnector(connectors: { id: string }[]) {
-  const controllerConnector = connectors.find(
-    (connector) => connector.id === "controller",
-  );
-
-  if (!controllerConnector) {
-    throw new Error("Controller connector is not available yet.");
-  }
-
-  return controllerConnector as StarterPackConnector;
-}
-
-async function waitForControllerReady(controllerConnector: StarterPackConnector) {
-  const deadline = Date.now() + CONTROLLER_READY_TIMEOUT_MS;
-
-  while (!controllerConnector.isReady()) {
-    if (Date.now() > deadline) {
-      throw new Error("Controller did not become ready in time.");
-    }
-
-    await new Promise((resolve) => setTimeout(resolve, CONTROLLER_READY_POLL_MS));
-  }
-}
 
 export function ClaimButton() {
   const { connectors } = useConnect();

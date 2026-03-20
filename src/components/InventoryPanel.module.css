@@ -38,6 +38,25 @@
   line-height: 1.5;
 }
 
+.topActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.topLink {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  color: #0a3a14;
+  font-family: "Fredoka One", cursive;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .card {
   display: grid;
   grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
@@ -187,6 +206,13 @@
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 18px;
+}
+
+.inlineError {
+  margin: 12px 0 0;
+  color: #8b1730;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .loadingBars {

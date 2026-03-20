@@ -2,9 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useAccount, useProvider } from "@starknet-react/core";
+import { useAccount, useConnect, useDisconnect, useProvider } from "@starknet-react/core";
 import { useEffect, useState } from "react";
 import { Provider } from "starknet";
+import {
+  getControllerConnector,
+  waitForControllerReady,
+} from "@/lib/controllerConnector";
 import {
   MEETUP_NFT_CONTRACT_ADDRESS,
   MEETUP_NFT_DESCRIPTION,
@@ -24,11 +28,31 @@ type InventoryState =
 
 export function InventoryPanel() {
   const { address, isConnected } = useAccount();
+  const { connectAsync, connectors } = useConnect();
+  const { disconnect } = useDisconnect();
   const { provider } = useProvider();
   const [inventoryState, setInventoryState] = useState<InventoryState>({
     status: "idle",
   });
   const [refreshKey, setRefreshKey] = useState(0);
+  const [connecting, setConnecting] = useState(false);
+  const [connectError, setConnectError] = useState<string | null>(null);
+
+  const handleConnect = async () => {
+    setConnectError(null);
+    setConnecting(true);
+
+    try {
+      const controllerConnector = getControllerConnector(connectors);
+      await waitForControllerReady(controllerConnector);
+      await connectAsync({ connector: controllerConnector });
+    } catch (error) {
+      console.error(error);
+      setConnectError("Could not connect Cartridge.");
+    } finally {
+      setConnecting(false);
+    }
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -107,22 +131,31 @@ export function InventoryPanel() {
           <p className={styles.eyebrow}>Inventory</p>
           <h2 className={styles.heading}>Collectibles</h2>
           <p className={styles.subcopy}>
-            Connect with Cartridge from the Claim screen to view owned meetup
-            collectibles here.
+            Connect Cartridge here to check whether this wallet already holds
+            the meetup collectible.
           </p>
         </header>
 
         <div className={styles.emptyState}>
           <h3 className={styles.stateTitle}>No wallet connected</h3>
           <p className={styles.stateBody}>
-            Once you connect and claim, this screen can read your collectible
-            directly from the NFT contract.
+            This page can read the NFT contract as soon as Cartridge is
+            connected. No claim action is required just to view holdings.
           </p>
           <div className={styles.stateActions}>
+            <button
+              type="button"
+              className={styles.actionButton}
+              onClick={handleConnect}
+              disabled={connecting}
+            >
+              {connecting ? "Connecting..." : "Connect Cartridge"}
+            </button>
             <Link href="/" className={styles.actionLink}>
-              Go to Claim
+              Open Claim
             </Link>
           </div>
+          {connectError && <p className={styles.inlineError}>{connectError}</p>}
         </div>
       </section>
     );
@@ -137,6 +170,15 @@ export function InventoryPanel() {
           Connected as {shortenAddress(address)}. This view reads the NFT
           contract on Starknet mainnet and shows any claimed meetup collectible.
         </p>
+        <div className={styles.topActions}>
+          <button
+            type="button"
+            className={styles.topLink}
+            onClick={() => disconnect()}
+          >
+            Disconnect
+          </button>
+        </div>
       </header>
 
       {inventoryState.status === "loading" && (
@@ -174,12 +216,12 @@ export function InventoryPanel() {
         <div className={styles.emptyState}>
           <h3 className={styles.stateTitle}>No collectibles yet</h3>
           <p className={styles.stateBody}>
-            This wallet does not currently hold the meetup NFT. Claim it first,
-            then refresh this page to see it here.
+            This wallet does not currently hold the meetup NFT. You can still
+            use this screen as a connected inventory check without claiming.
           </p>
           <div className={styles.stateActions}>
             <Link href="/" className={styles.actionLink}>
-              Go to Claim
+              Open Claim
             </Link>
             <button
               type="button"

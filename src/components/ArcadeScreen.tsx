@@ -58,12 +58,6 @@ export function ArcadeScreen({
       <div className={styles.inner}>
         <nav className={styles.nav} aria-label="Primary">
           <Link
-            href="/"
-            className={`${styles.tab} ${activeTab === "claim" ? styles.activeTab : ""}`}
-          >
-            Claim
-          </Link>
-          <Link
             href="/inventory"
             className={`${styles.tab} ${activeTab === "inventory" ? styles.activeTab : ""}`}
           >
