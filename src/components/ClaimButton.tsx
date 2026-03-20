@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import {
   type Connector,
   useAccount,
@@ -91,18 +90,6 @@ export function ClaimButton() {
 
   return (
     <div className={styles.wrapper}>
-      {claimed && (
-        <div className={styles.nftPreview}>
-          <Image
-            src="/nft-badge.svg"
-            alt="Starknet Japan Meetup NFT"
-            width={250}
-            height={250}
-            priority
-          />
-        </div>
-      )}
-
       <button
         type="button"
         className={`${styles.btn} ${openingStarterPack ? styles.loading : ""} ${claimed ? styles.done : ""}`}
