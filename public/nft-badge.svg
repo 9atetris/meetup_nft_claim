@@ -1,0 +1,106 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="badgeGradient" x1="64" y1="64" x2="448" y2="448" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#72B6FF"/>
+      <stop offset="0.55" stop-color="#4F6DFF"/>
+      <stop offset="1" stop-color="#2F1CFF"/>
+    </linearGradient>
+    <linearGradient id="pillGradient" x1="215" y1="350" x2="300" y2="405" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#68FF31"/>
+      <stop offset="1" stop-color="#20C129"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="512" height="512" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#13005A" flood-opacity="0.2"/>
+    </filter>
+    <path id="topArc" d="M126 144C176 105 336 105 386 144"/>
+    <path id="bottomArc" d="M126 370C176 409 336 409 386 370"/>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <path
+      d="M256 30
+      C286 40 315 18 342 35
+      C369 52 404 48 424 71
+      C444 94 478 102 488 132
+      C498 162 524 186 522 218
+      C520 250 538 280 525 310
+      C512 340 518 374 496 397
+      C474 420 468 454 440 469
+      C412 484 393 513 361 516
+      C329 519 300 540 268 532
+      C236 524 204 538 175 521
+      C146 504 110 505 88 482
+      C66 459 32 449 19 419
+      C6 389 -14 359 -10 327
+      C-6 295 -18 262 -6 231
+      C6 200 4 164 22 137
+      C40 110 41 75 65 54
+      C89 33 101 0 133 -8
+      C165 -16 194 -2 224 10
+      C236 15 246 24 256 30Z"
+      transform="translate(0 0)"
+      fill="url(#badgeGradient)"
+    />
+  </g>
+
+  <text fill="#F7F8FF" font-family="'Courier New', monospace" font-size="24" font-weight="700" letter-spacing="2">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">STARKNET JAPAN MEETUP</textPath>
+  </text>
+
+  <text fill="#F7F8FF" font-family="'Courier New', monospace" font-size="24" font-weight="700" letter-spacing="4">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">21 MARCH 2025</textPath>
+  </text>
+
+  <g transform="translate(44 220)">
+    <circle cx="52" cy="52" r="50" fill="#1F226B" stroke="#FF8FA3" stroke-width="3"/>
+    <circle cx="22" cy="24" r="6" fill="#FFFFFF"/>
+    <path
+      d="M82 27C64 8 40 15 30 39C44 29 60 32 71 42C56 41 43 50 36 62C55 79 81 74 95 54C101 44 100 31 82 27Z"
+      fill="#F7F4F2"
+    />
+    <circle cx="93" cy="82" r="7" fill="#FF8FA3"/>
+  </g>
+
+  <text x="160" y="286" fill="#FFFFFF" font-family="'Helvetica Neue', Arial, sans-serif" font-size="62" font-weight="500">
+    STARKNET
+  </text>
+
+  <g transform="translate(335 164) rotate(12 44 44)">
+    <rect x="0" y="0" width="88" height="88" rx="4" fill="#F8F5F2" stroke="#7C7CA7" stroke-width="2"/>
+    <rect x="10" y="10" width="68" height="68" fill="#DFFFE4" stroke="#7C7CA7" stroke-width="1.5"/>
+    <path d="M21 65L41 30L55 48L63 38L67 65H21Z" fill="#2BDA3C" stroke="#197A20" stroke-width="2"/>
+    <path d="M42 19V35" stroke="#197A20" stroke-width="2" stroke-linecap="round"/>
+    <path d="M36 25H48" stroke="#197A20" stroke-width="2" stroke-linecap="round"/>
+    <g fill="#7C7CA7">
+      <circle cx="5" cy="12" r="2"/>
+      <circle cx="5" cy="24" r="2"/>
+      <circle cx="5" cy="36" r="2"/>
+      <circle cx="5" cy="48" r="2"/>
+      <circle cx="5" cy="60" r="2"/>
+      <circle cx="5" cy="72" r="2"/>
+      <circle cx="83" cy="12" r="2"/>
+      <circle cx="83" cy="24" r="2"/>
+      <circle cx="83" cy="36" r="2"/>
+      <circle cx="83" cy="48" r="2"/>
+      <circle cx="83" cy="60" r="2"/>
+      <circle cx="83" cy="72" r="2"/>
+      <circle cx="12" cy="5" r="2"/>
+      <circle cx="24" cy="5" r="2"/>
+      <circle cx="36" cy="5" r="2"/>
+      <circle cx="48" cy="5" r="2"/>
+      <circle cx="60" cy="5" r="2"/>
+      <circle cx="72" cy="5" r="2"/>
+      <circle cx="12" cy="83" r="2"/>
+      <circle cx="24" cy="83" r="2"/>
+      <circle cx="36" cy="83" r="2"/>
+      <circle cx="48" cy="83" r="2"/>
+      <circle cx="60" cy="83" r="2"/>
+      <circle cx="72" cy="83" r="2"/>
+    </g>
+  </g>
+
+  <g transform="translate(205 358)">
+    <rect width="92" height="46" rx="14" fill="url(#pillGradient)" stroke="#2E47FF" stroke-width="3"/>
+    <text x="46" y="31" fill="#FFFFFF" font-family="'Courier New', monospace" font-size="28" font-weight="700" text-anchor="middle">PLAY</text>
+  </g>
+</svg>
