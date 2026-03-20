@@ -82,6 +82,7 @@
 .art {
   width: min(220px, 100%);
   height: auto;
+  display: block;
 }
 
 .details {

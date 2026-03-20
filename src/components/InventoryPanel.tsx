@@ -4,17 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { useAccount, useConnect, useDisconnect, useProvider } from "@starknet-react/core";
 import { useEffect, useState } from "react";
-import { Provider } from "starknet";
+import { CairoByteArray, Provider } from "starknet";
 import {
   getControllerConnector,
   waitForControllerReady,
 } from "@/lib/controllerConnector";
 import {
+  type CollectibleMetadata,
   MEETUP_NFT_CONTRACT_ADDRESS,
   MEETUP_NFT_DESCRIPTION,
   MEETUP_NFT_IMAGE_PATH,
   MEETUP_NFT_NAME,
   parseUint256Response,
+  parseTokenUriMetadata,
   shortenAddress,
 } from "@/lib/meetupNft";
 import styles from "./InventoryPanel.module.css";
@@ -23,7 +25,12 @@ const CONTRACT_URL = `https://voyager.online/contract/${MEETUP_NFT_CONTRACT_ADDR
 
 type InventoryState =
   | { status: "idle" | "loading" }
-  | { status: "ready"; balance: bigint; tokenId: bigint | null }
+  | {
+      status: "ready";
+      balance: bigint;
+      tokenId: bigint | null;
+      metadata: CollectibleMetadata | null;
+    }
   | { status: "error"; message: string };
 
 export function InventoryPanel() {
@@ -83,6 +90,7 @@ export function InventoryPanel() {
             status: "ready",
             balance,
             tokenId: null,
+            metadata: null,
           });
           return;
         }
@@ -93,6 +101,15 @@ export function InventoryPanel() {
           calldata: [address],
         });
         const tokenId = parseUint256Response(tokenIdResult);
+        const tokenUriResult = await rpcProvider.callContract({
+          contractAddress: MEETUP_NFT_CONTRACT_ADDRESS,
+          entrypoint: "token_uri",
+          calldata: tokenIdResult,
+        });
+        const tokenUri = CairoByteArray.factoryFromApiResponse(
+          tokenUriResult[Symbol.iterator](),
+        ).decodeUtf8();
+        const metadata = parseTokenUriMetadata(tokenUri);
 
         if (cancelled) {
           return;
@@ -102,6 +119,7 @@ export function InventoryPanel() {
           status: "ready",
           balance,
           tokenId,
+          metadata,
         });
       } catch (error) {
         console.error(error);
@@ -238,22 +256,35 @@ export function InventoryPanel() {
         inventoryState.balance > BigInt(0) && (
         <article className={styles.card}>
           <div className={styles.artPanel}>
-            <Image
-              src={MEETUP_NFT_IMAGE_PATH}
-              alt={MEETUP_NFT_NAME}
-              width={220}
-              height={220}
-              className={styles.art}
-              priority
-            />
+            {inventoryState.metadata?.image &&
+            !inventoryState.metadata.image.startsWith("/") ? (
+              <img
+                src={inventoryState.metadata.image}
+                alt={inventoryState.metadata?.name ?? MEETUP_NFT_NAME}
+                className={styles.art}
+              />
+            ) : (
+              <Image
+                src={inventoryState.metadata?.image ?? MEETUP_NFT_IMAGE_PATH}
+                alt={inventoryState.metadata?.name ?? MEETUP_NFT_NAME}
+                width={220}
+                height={220}
+                className={styles.art}
+                priority
+              />
+            )}
           </div>
 
           <div className={styles.details}>
             <span className={styles.badge}>Collected</span>
 
             <div>
-              <h3 className={styles.name}>{MEETUP_NFT_NAME}</h3>
-              <p className={styles.description}>{MEETUP_NFT_DESCRIPTION}</p>
+              <h3 className={styles.name}>
+                {inventoryState.metadata?.name ?? MEETUP_NFT_NAME}
+              </h3>
+              <p className={styles.description}>
+                {inventoryState.metadata?.description ?? MEETUP_NFT_DESCRIPTION}
+              </p>
             </div>
 
             <div className={styles.grid}>
