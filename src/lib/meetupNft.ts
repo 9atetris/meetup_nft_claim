@@ -1,7 +1,7 @@
 export const STARTER_PACK_ID = 7;
 
 export const MEETUP_NFT_CONTRACT_ADDRESS =
-  "0x022d7b4026db78d8cfd354dd7bf28b49124abff6316d0ae4d4212d02a3d3bb19";
+  "0x049838d47e37f3681c14ced57742a9900c71a614f651be2d77658505debb21c5";
 
 export const MEETUP_NFT_NAME = "Starknet Japan Meetup NFT";
 export const MEETUP_NFT_DESCRIPTION =
