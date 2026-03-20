@@ -1,0 +1,212 @@
+.panel {
+  width: min(760px, 100%);
+  background: rgba(255, 255, 255, 0.7);
+  border: 4px solid #0a3a14;
+  border-radius: 28px;
+  box-shadow: 0 10px 0 rgba(10, 58, 20, 0.22);
+  padding: clamp(20px, 4vw, 32px);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: "Fredoka One", cursive;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: #0a3a14;
+  text-transform: uppercase;
+}
+
+.heading {
+  margin: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: clamp(26px, 5vw, 34px);
+  line-height: 1.1;
+  color: #07290f;
+}
+
+.subcopy {
+  margin: 0;
+  color: #145722;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
+  gap: 24px;
+  padding: 22px;
+  border-radius: 24px;
+  background: #081d0c;
+  color: #f0ffea;
+}
+
+.artPanel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top, rgba(97, 255, 145, 0.24), transparent 45%),
+    linear-gradient(180deg, #102e17, #09180d);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 18px;
+}
+
+.art {
+  width: min(220px, 100%);
+  height: auto;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.badge {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #d6ff72;
+  color: #12300d;
+  font-family: "Fredoka One", cursive;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+.name {
+  margin: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: clamp(22px, 4vw, 28px);
+  line-height: 1.2;
+}
+
+.description {
+  margin: 0;
+  color: #c7e9cf;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric {
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.metricLabel {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #88c292;
+}
+
+.metricValue {
+  display: block;
+  margin-top: 6px;
+  font-family: monospace;
+  font-size: 15px;
+  word-break: break-word;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.actionButton,
+.actionLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 2px solid #0a3a14;
+  background: #fff0b8;
+  color: #0a3a14;
+  font-family: "Fredoka One", cursive;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.actionButton {
+  appearance: none;
+}
+
+.actionGhost {
+  background: transparent;
+  border-color: rgba(240, 255, 234, 0.32);
+  color: #f0ffea;
+}
+
+.emptyState,
+.loadingState,
+.errorState {
+  padding: 28px 20px;
+  border-radius: 24px;
+  background: rgba(8, 29, 12, 0.1);
+  text-align: center;
+}
+
+.stateTitle {
+  margin: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 24px;
+  color: #07290f;
+}
+
+.stateBody {
+  margin: 10px 0 0;
+  color: #145722;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.stateActions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.loadingBars {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.loadingBar {
+  height: 16px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(10, 58, 20, 0.08), rgba(10, 58, 20, 0.18), rgba(10, 58, 20, 0.08));
+}
+
+@media (max-width: 720px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

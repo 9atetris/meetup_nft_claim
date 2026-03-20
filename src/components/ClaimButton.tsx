@@ -7,9 +7,9 @@ import {
   useDisconnect,
 } from "@starknet-react/core";
 import { useState } from "react";
+import { STARTER_PACK_ID } from "@/lib/meetupNft";
 import styles from "./ClaimButton.module.css";
 
-const STARTER_PACK_ID = 7;
 const CONTROLLER_READY_TIMEOUT_MS = 10_000;
 const CONTROLLER_READY_POLL_MS = 100;
 

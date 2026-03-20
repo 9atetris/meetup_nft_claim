@@ -6,17 +6,6 @@
   z-index: 3;
 }
 
-.nftPreview {
-  width: min(250px, 72vw);
-  margin-bottom: 8px;
-}
-
-.nftPreview :global(img) {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .btn {
   cursor: pointer;
   border: none;

@@ -1,0 +1,109 @@
+.wrap {
+  width: 100%;
+  min-height: 100vh;
+  background: #22e855;
+  position: relative;
+  overflow: hidden;
+  padding: 28px 20px 60px;
+}
+
+.gridBg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.corner {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background: #00cc33;
+  border: 3px solid #006618;
+  z-index: 2;
+}
+
+.tl {
+  top: 12px;
+  left: 12px;
+}
+
+.tr {
+  top: 12px;
+  right: 12px;
+}
+
+.bl {
+  bottom: 12px;
+  left: 12px;
+}
+
+.br {
+  bottom: 12px;
+  right: 12px;
+}
+
+.inner {
+  position: relative;
+  z-index: 3;
+  width: min(920px, 100%);
+  min-height: calc(100vh - 56px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 3px solid #0a3a14;
+  background: rgba(255, 255, 255, 0.58);
+  color: #0a3a14;
+  font-family: "Fredoka One", cursive;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 4px 0 rgba(10, 58, 20, 0.35);
+}
+
+.activeTab {
+  background: #fff0b8;
+}
+
+.title {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: clamp(16px, 4vw, 24px);
+  color: #0a3a14;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
